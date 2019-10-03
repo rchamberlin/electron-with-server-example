@@ -7,18 +7,21 @@ let isDev = require('electron-is-dev')
 let clientWin
 let serverWin
 let serverProcess
+let width, height
 
 function createWindow(socketName) {
   clientWin = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width,
+    height,
     webPreferences: {
       nodeIntegration: false,
-      preload: __dirname + '/client-preload.js'
+      preload: __dirname + '/src/client/client-preload.js'
     }
   })
 
-  clientWin.loadFile('client-index.html')
+  clientWin.loadFile('public/client-index.html')
+
+  clientWin.webContents.openDevTools()
 
   clientWin.webContents.on('did-finish-load', () => {
     clientWin.webContents.send('set-socket', {
@@ -29,16 +32,16 @@ function createWindow(socketName) {
 
 function createBackgroundWindow(socketName) {
   const win = new BrowserWindow({
-    x: 500,
-    y: 300,
-    width: 700,
-    height: 500,
+    width,
+    height,
     show: true,
     webPreferences: {
       nodeIntegration: true
     }
   })
-  win.loadURL(`file://${__dirname}/server-dev.html`)
+  win.loadFile(__dirname + '/src/server/server-dev.html')
+
+  win.webContents.openDevTools()
 
   win.webContents.on('did-finish-load', () => {
     win.webContents.send('set-socket', { name: socketName })
@@ -60,6 +63,9 @@ function createBackgroundProcess(socketName) {
 }
 
 app.on('ready', async () => {
+  width = electron.screen.getPrimaryDisplay().workAreaSize.width
+  height = electron.screen.getPrimaryDisplay().workAreaSize.height
+
   serverSocket = await findOpenSocket()
 
   createWindow(serverSocket)

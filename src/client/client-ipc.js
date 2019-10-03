@@ -6,8 +6,6 @@ async function init() {
   })
 }
 
-init()
-
 // State
 const replyHandlers = new Map()
 const listeners = new Map()
@@ -91,3 +89,5 @@ function listen(name, cb) {
 function unlisten(name) {
   listeners.set(name, [])
 }
+
+module.exports = { init, send, listen, unlisten }

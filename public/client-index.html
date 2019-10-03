@@ -1,0 +1,15 @@
+<div id="app_root"></div>
+
+<script src="./client.bundle.js"></script>
+
+<script>
+  if (!IS_DEV) {
+    var tag = document.createElement('meta')
+    tag.setAttribute('http-equiv', 'Content-Security-Policy')
+    tag.setAttribute(
+      'content',
+      "default-src 'self'; style-src 'self' 'unsafe-inline';"
+    )
+    document.head.appendChild(tag)
+  }
+</script>
