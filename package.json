@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "productName": "test",
+  "description": "Test",
+  "homepage": "http://keepstock.com",
+  "author": "Test <test@test.com> (https://www.test.com)",
   "dependencies": {
     "electron-is-dev": "^1.1.0",
     "node-ipc": "^9.1.1",
