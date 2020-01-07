@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build_archlinux:
+  build:
     docker:
       # specify the version you desire here
       - image: electronuserland/builder
@@ -34,5 +34,4 @@ workflows:
   version: 2
   build:
     jobs:
-      - build_archlinux
-      - build_windows
+      - build
