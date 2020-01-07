@@ -17,7 +17,7 @@
   "scripts": {
     "bundle": "webpack --mode production --config ./webpack.config.js",
     "start": "electron .",
-    "dist": "npm run bundle && electron-builder -lw"
+    "dist": "npm run bundle && electron-builder"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
