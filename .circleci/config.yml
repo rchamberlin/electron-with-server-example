@@ -18,7 +18,7 @@ jobs:
       - checkout
       - run: npm i && npm run dist
       - store_artifacts:
-          path: /root/project/dist
+          path: /root/project/dist/*.pacman
 
 workflows:
   version: 2
